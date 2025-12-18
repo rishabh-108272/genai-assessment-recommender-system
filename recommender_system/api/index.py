@@ -40,7 +40,7 @@ async def recommend_assessments(request: QueryRequest):
         # Returns a 500 error if something fails in the pipeline
         raise HTTPException(status_code=500, detail=str(e))
 
-if __name__ == "__main__":
-    import uvicorn
-    # Starts the server on port 8000
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     # Starts the server on port 8000
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
