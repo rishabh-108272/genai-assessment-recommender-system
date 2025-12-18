@@ -1,7 +1,7 @@
 import os
 import re
 from pinecone import Pinecone
-from embeddings.embed_queries import embed_query
+from recommender_system.embeddings.embed_queries import embed_query
 
 # Configuration
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
