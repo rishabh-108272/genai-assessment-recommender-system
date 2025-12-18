@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
-from input_handler import process_input 
+from .input_handler import process_input 
 
 app = FastAPI(title="Assessment Recommendation API")
 

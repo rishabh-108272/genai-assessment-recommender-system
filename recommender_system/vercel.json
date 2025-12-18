@@ -1,7 +1,7 @@
 {
   "rewrites": [
-    { "source": "/health", "destination": "/backend.py" },
-    { "source": "/recommend", "destination": "/backend.py" },
-    { "source": "/(.*)", "destination": "/backend.py" }
+    { "source": "/health", "destination": "/api/backend.py" },
+    { "source": "/recommend", "destination": "/api/backend.py" },
+    { "source": "/(.*)", "destination": "/api/backend.py" }
   ]
 }
