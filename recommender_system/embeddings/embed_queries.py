@@ -1,13 +1,16 @@
-from .embedding_utils import get_embeddings
+import numpy as np
+# Import the function instead of get_model
+from .embedding_utils import query_embeddings 
 
-def embed_query(normalized_query: str):
-    """
-    Generates an embedding for the query using Pinecone Inference API.
-    Returns a list of floats (vector).
-    """
-    # No more local model loading or numpy processing
-    vec = get_embeddings(normalized_query)
+def embed_query(normalized_query: str) -> np.ndarray:
+    # 1. Get the list of floats from the API
+    raw_vec = query_embeddings([normalized_query])
     
-    # Pinecone Inference returns a list by default, 
-    # which is exactly what the Pinecone retriever needs.
-    return vec
+    # 2. Convert to a NumPy array
+    vec = np.array(raw_vec, dtype=np.float32)
+    
+    # 3. Manual Normalization (to replicate normalize_embeddings=True)
+    norm = np.linalg.norm(vec, axis=1, keepdims=True)
+    normalized_vec = vec / norm
+    
+    return normalized_vec

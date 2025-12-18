@@ -1,4 +1,6 @@
 python-dotenv
+numpy
+requests
 pandas
 groq
 pinecone

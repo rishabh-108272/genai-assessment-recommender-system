@@ -1,14 +1,7 @@
 {
-  "version": 2,
   "rewrites": [
-    { "source": "/health", "destination": "/api/index.py" },
-    { "source": "/recommend", "destination": "/api/index.py" },
-    { "source": "/api/(.*)", "destination": "/api/index.py" }
-  ],
-  "functions": {
-    "api/*.py": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+    { "source": "/health", "destination": "/backend.py" },
+    { "source": "/recommend", "destination": "/backend.py" },
+    { "source": "/(.*)", "destination": "/backend.py" }
+  ]
 }
