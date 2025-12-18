@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from api.input_handler import process_input 
-
+import traceback
 app = FastAPI(title="Assessment Recommendation API")
 
 # 1. Enable CORS so your HTML/JS frontend can communicate with the API
@@ -37,6 +37,7 @@ async def recommend_assessments(request: QueryRequest):
         return JSONResponse(content=result, status_code=200)
     
     except Exception as e:
+        traceback.print_exc()
         # Returns a 500 error if something fails in the pipeline
         raise HTTPException(status_code=500, detail=str(e))
 
