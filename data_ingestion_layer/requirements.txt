@@ -1,0 +1,12 @@
+beautifulsoup4
+requests
+google-genai
+python-dotenv
+numpy
+sentence_transformers
+faiss-cpu
+pandas
+groq
+pinecone
+fastapi 
+uvicorn

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Recommender</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 50px; }
+        .search-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 600px; text-align: center; }
+        input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; margin-bottom: 20px; }
+        button { padding: 12px 24px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        .results-container { margin-top: 40px; width: 100%; max-width: 800px; }
+        .card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-left: 5px solid #007bff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card h3 { margin-top: 0; color: #333; }
+        .card p { color: #666; font-size: 14px; }
+        .badge { display: inline-block; background: #e9ecef; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; color: #495057; }
+    </style>
+</head>
+<body>
+
+    <div class="search-box">
+        <h2>Find Your Assessment</h2>
+        <input type="text" id="queryInput" placeholder="Enter your query">
+        <br>
+        <button onclick="getRecommendations()">Search Recommendations</button>
+    </div>
+
+    <div id="results" class="results-container"></div>
+
+    <script>
+        async function getRecommendations() {
+            const query = document.getElementById('queryInput').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = 'Searching...';
+
+            try {
+                const response = await fetch('http://localhost:8000/recommend', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: query })
+                });
+
+                const data = await response.json();
+                resultsDiv.innerHTML = '';
+
+                if (data.recommended_assessments && data.recommended_assessments.length > 0) {
+                    data.recommended_assessments.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            <h3><a href="${item.url}" target="_blank">${item.name}</a></h3>
+                            <p>${item.description}</p>
+                            <div>
+                                <span class="badge">Duration: ${item.duration}m</span>
+                                <span class="badge">Adaptive: ${item.adaptive_support}</span>
+                                <span class="badge">Remote: ${item.remote_support}</span>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                ${item.test_type.map(type => `<span class="badge" style="background:#007bff; color:white;">${type}</span>`).join('')}
+                            </div>
+                        `;
+                        resultsDiv.appendChild(card);
+                    });
+                } else {
+                    resultsDiv.innerHTML = '<p>No recommendations found.</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                resultsDiv.innerHTML = '<p style="color:red;">Error connecting to API.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
