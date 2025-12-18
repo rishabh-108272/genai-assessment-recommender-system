@@ -6,3 +6,4 @@ groq
 pinecone
 fastapi 
 uvicorn
+huggingface_hub
