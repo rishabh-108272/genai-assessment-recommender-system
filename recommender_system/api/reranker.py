@@ -1,7 +1,7 @@
-from recommender_system.boosting import lexical_boost, url_boost
-from recommender_system.duration_utils import extract_duration_constraint
-from recommender_system.duration_scoring import duration_score
-from recommender_system.domain_mapper import belongs_to_domain # Import the helper
+from boosting import lexical_boost, url_boost
+from duration_utils import extract_duration_constraint
+from duration_scoring import duration_score
+from domain_mapper import belongs_to_domain # Import the helper
 
 def rerank_candidates(
     query: str,
