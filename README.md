@@ -76,7 +76,7 @@ The API will be available at `http://127.0.0.1:8000`. You can access the interac
 * **Health Check**: `GET /health` — Verifies server status.
 * **Recommendation**: `POST /recommend` — Submit a query or JD text to receive top-K assessments.
 
-## 📈 Evaluation Results
+## Evaluation Results
 
 The system is evaluated using Mean Recall@10.
 
