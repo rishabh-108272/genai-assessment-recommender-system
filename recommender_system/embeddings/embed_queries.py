@@ -1,6 +1,6 @@
 import numpy as np
 # Import the function instead of get_model
-from .embedding_utils import query_embeddings 
+from embeddings.embedding_utils import query_embeddings 
 
 def embed_query(normalized_query: str) -> np.ndarray:
     # 1. Get the list of floats from the API

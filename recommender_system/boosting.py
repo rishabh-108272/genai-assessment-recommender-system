@@ -1,4 +1,4 @@
-from lexical_utils import tokenize
+from recommender_system.lexical_utils import tokenize
 
 def lexical_boost(query: str, title: str) -> float:
     q_tokens = tokenize(query)

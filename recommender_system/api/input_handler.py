@@ -1,7 +1,7 @@
-from query_understanding import understand_query
-from pinecone_retriever import PineconeRetriever
-from reranker import rerank_candidates
-from domain_mapper import normalize_domains
+from api.query_understanding import understand_query
+from api.pinecone_retriever import PineconeRetriever
+from api.reranker import rerank_candidates
+from api.domain_mapper import normalize_domains
 
 # -----------------------------
 # Configuration

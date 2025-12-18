@@ -40,5 +40,5 @@ def generate_csv():
 
     print(f"Submission CSV generated with {len(submission_df)} rows.")
 
-if __name__ == "__main__":
-    generate_csv()
+# if __name__ == "__main__":
+#     generate_csv()

@@ -1,6 +1,6 @@
 import json
 import numpy as np
-from embedding_utils import get_model
+from embeddings.embedding_utils import get_model
 
 def build_embedding_text(assessment: dict) -> str:
     # Extract fields with default values to prevent KeyErrors
